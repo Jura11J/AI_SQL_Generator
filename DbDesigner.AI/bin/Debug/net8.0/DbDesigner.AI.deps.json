@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "DbDesigner.AI/1.0.0": {
+        "dependencies": {
+          "DbDesigner.Core": "1.0.0"
+        },
+        "runtime": {
+          "DbDesigner.AI.dll": {}
+        }
+      },
+      "DbDesigner.Core/1.0.0": {
+        "runtime": {
+          "DbDesigner.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DbDesigner.AI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DbDesigner.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

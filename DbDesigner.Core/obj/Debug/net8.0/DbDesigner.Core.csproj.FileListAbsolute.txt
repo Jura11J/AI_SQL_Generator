@@ -1,0 +1,11 @@
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\bin\Debug\net8.0\DbDesigner.Core.deps.json
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\bin\Debug\net8.0\DbDesigner.Core.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\bin\Debug\net8.0\DbDesigner.Core.pdb
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.AssemblyInfoInputs.cache
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.AssemblyInfo.cs
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.csproj.CoreCompileInputs.cache
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\refint\DbDesigner.Core.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.pdb
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\ref\DbDesigner.Core.dll

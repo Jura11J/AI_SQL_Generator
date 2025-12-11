@@ -1,0 +1,256 @@
+<Window x:Class="DbDesigner.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DbDesigner.App.ViewModels"
+        mc:Ignorable="d"
+        Title="DbDesigner" Height="720" Width="1100">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Polaczenie">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Connection string (SQLite)" VerticalAlignment="Center"/>
+                        <TextBox Width="650"
+                                 Margin="8,0,0,0"
+                                 Text="{Binding Connection.ConnectionString, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Polacz i wczytaj schemat"
+                                Padding="14,6"
+                                Margin="8,0,0,0"
+                                Command="{Binding Connection.LoadSchemaCommand}" />
+                        <Button Content="Utworz przykladowa baze CRM"
+                                Padding="14,6"
+                                Margin="8,0,0,0"
+                                Command="{Binding Connection.CreateSampleCrmDatabaseCommand}" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Margin="0,8,0,0"
+                               Text="{Binding Connection.StatusMessage}" />
+
+                    <Border Grid.Row="2"
+                            Margin="0,10,0,0"
+                            Background="#0DCCCCCC"
+                            Padding="12">
+                        <StackPanel>
+                            <TextBlock Text="Wskazowka"
+                                       FontWeight="Bold" />
+                            <TextBlock Text="Podaj connection string SQLite (np. Data Source=sample.db) i wcisnij przycisk, aby wczytac schemat."
+                                       TextWrapping="Wrap"
+                                       Margin="0,4,0,0" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Schemat i zaleznosci">
+                <Grid Margin="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Margin="0,0,10,0">
+                        <TextBlock Text="Tabele" FontWeight="Bold" />
+                        <ListBox ItemsSource="{Binding Schema.Tables}"
+                                 SelectedItem="{Binding Schema.SelectedTable}"
+                                 DisplayMemberPath="Name"
+                                 Height="220"/>
+                        <TextBlock Text="{Binding Schema.Summary}"
+                                   Margin="0,8,0,0" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                        <TextBlock Text="Widoki" FontWeight="Bold" />
+                        <ListBox ItemsSource="{Binding Schema.Views}"
+                                 SelectedItem="{Binding Schema.SelectedView}"
+                                 DisplayMemberPath="Name"
+                                 Height="220"/>
+                        <TextBlock Text="Zaleznosci FK (tabela -> tabela)"
+                                   FontWeight="Bold"
+                                   Margin="0,12,0,4"/>
+                        <ItemsControl ItemsSource="{Binding Schema.ForeignKeys}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}.{1} -> {2}.{3}">
+                                                <Binding Path="FromTable"/>
+                                                <Binding Path="FromColumn"/>
+                                                <Binding Path="ToTable"/>
+                                                <Binding Path="ToColumn"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{Binding Schema.SelectedTable.Name}"
+                                   FontSize="16"
+                                   FontWeight="Bold" />
+
+                        <GroupBox Header="Kolumny" Grid.Row="1" Margin="0,8,0,0">
+                            <DataGrid ItemsSource="{Binding Schema.Columns}"
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="False"
+                                      CanUserDeleteRows="False"
+                                      HeadersVisibility="Column"
+                                      IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn Header="Typ" Binding="{Binding DataType}" Width="*"/>
+                                    <DataGridCheckBoxColumn Header="PK" Binding="{Binding IsPrimaryKey}" Width="60"/>
+                                    <DataGridCheckBoxColumn Header="NULL" Binding="{Binding IsNullable}" Width="60"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+
+                        <GroupBox Header="Klucze obce (wychodzace)" Grid.Row="2" Margin="0,8,0,0">
+                            <ItemsControl ItemsSource="{Binding Schema.ForeignKeys}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}.{1} -> {2}.{3}">
+                                                    <Binding Path="FromTable"/>
+                                                    <Binding Path="FromColumn"/>
+                                                    <Binding Path="ToTable"/>
+                                                    <Binding Path="ToColumn"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </GroupBox>
+
+                        <GroupBox Header="Tabela wskazywana przez inne FK" Grid.Row="3" Margin="0,8,0,0">
+                            <ItemsControl ItemsSource="{Binding Schema.IncomingForeignKeys}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}.{1} -> {2}.{3}">
+                                                    <Binding Path="FromTable"/>
+                                                    <Binding Path="FromColumn"/>
+                                                    <Binding Path="ToTable"/>
+                                                    <Binding Path="ToColumn"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </GroupBox>
+
+                        <GroupBox Header="Definicja widoku" Grid.Row="4" Margin="0,8,0,0">
+                            <TextBox Text="{Binding Schema.SelectedView.Definition}"
+                                     FontFamily="Consolas"
+                                     FontSize="12"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     Height="120"
+                                     IsReadOnly="True"/>
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Chat AI / projektant zmian">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <TextBlock Text="Specyfikacja zmian w bazie" FontWeight="Bold"/>
+                        <TextBox Text="{Binding DesignChanges.SpecificationText, UpdateSourceTrigger=PropertyChanged}"
+                                 AcceptsReturn="True"
+                                 Margin="0,6,0,0"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Height="160"
+                                 TextWrapping="Wrap"/>
+                        <Button Content="Zaproponuj zmiany"
+                                HorizontalAlignment="Right"
+                                Margin="0,6,0,0"
+                                Padding="12,6"
+                                Command="{Binding DesignChanges.ProposeChangesCommand}" />
+                    </StackPanel>
+
+                    <GroupBox Grid.Row="1" Header="Proponowane zmiany" Margin="0,10,0,0">
+                        <DataGrid ItemsSource="{Binding DesignChanges.ProposedChanges}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  IsReadOnly="False">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header="Use" Binding="{Binding IsSelected, Mode=TwoWay}" Width="60"/>
+                                <DataGridTextColumn Header="Typ" Binding="{Binding Change.GetType().Name}" Width="150"/>
+                                <DataGridTextColumn Header="Opis" Binding="{Binding Change.Description}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <TextBlock Grid.Row="2" Text="{Binding DesignChanges.StatusMessage}" Margin="0,8,0,0"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="SQL i wykonanie">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Text="{Binding ScriptPreview.GeneratedScript, Mode=OneWay}"
+                             FontFamily="Consolas"
+                             FontSize="12"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto"
+                             IsReadOnly="True"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+                        <TextBlock Text="{Binding ScriptPreview.StatusMessage}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="0,0,12,0"/>
+                        <Button Content="Zapisz do pliku..."
+                                Padding="12,6"
+                                Margin="8,0,0,0"
+                                Command="{Binding ScriptPreview.SaveToFileCommand}"/>
+                        <Button Content="Wykonaj na bazie"
+                                Padding="12,6"
+                                Margin="8,0,0,0"
+                                Command="{Binding ScriptPreview.ExecuteOnDatabaseCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

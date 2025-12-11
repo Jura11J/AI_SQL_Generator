@@ -1,0 +1,15 @@
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\bin\Debug\net8.0\DbDesigner.AI.deps.json
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\bin\Debug\net8.0\DbDesigner.AI.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\bin\Debug\net8.0\DbDesigner.AI.pdb
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\bin\Debug\net8.0\DbDesigner.Core.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\bin\Debug\net8.0\DbDesigner.Core.pdb
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.csproj.AssemblyReference.cache
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.AssemblyInfoInputs.cache
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.AssemblyInfo.cs
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.csproj.CoreCompileInputs.cache
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesign.A99AFA3D.Up2Date
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\refint\DbDesigner.AI.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.pdb
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\ref\DbDesigner.AI.dll
