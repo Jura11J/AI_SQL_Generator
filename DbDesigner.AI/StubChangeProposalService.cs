@@ -9,7 +9,7 @@ namespace DbDesigner.AI;
 
 public class StubChangeProposalService : IChangeProposalService
 {
-    public Task<IReadOnlyList<SchemaChange>> ProposeChangesAsync(string specification, DatabaseSchema? currentSchema)
+    public async Task<IReadOnlyList<SchemaChange>> ProposeChangesAsync(string specification, DatabaseSchema? currentSchema)
     {
         var proposals = new List<SchemaChange>();
         var schema = currentSchema ?? new DatabaseSchema();
@@ -33,7 +33,16 @@ public class StubChangeProposalService : IChangeProposalService
             proposals.Add(BuildDefaultTable());
         }
 
-        return Task.FromResult<IReadOnlyList<SchemaChange>>(proposals);
+        await AiCallLogger.LogAsync(new AiCallLogEntry
+        {
+            Backend = "LocalStub",
+            Specification = specification,
+            TableCount = schema.Tables.Count,
+            ViewCount = schema.Views.Count,
+            Changes = proposals
+        });
+
+        return proposals;
     }
 
     private static bool HasTable(DatabaseSchema schema, string tableName) =>

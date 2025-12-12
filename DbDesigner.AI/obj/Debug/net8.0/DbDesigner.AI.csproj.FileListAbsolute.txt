@@ -13,3 +13,4 @@ C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\D
 C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\refint\DbDesigner.AI.dll
 C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.pdb
 C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\ref\DbDesigner.AI.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.AI\obj\Debug\net8.0\DbDesigner.AI.sourcelink.json

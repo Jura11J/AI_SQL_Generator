@@ -8,7 +8,9 @@ public class SelectableSchemaChange : INotifyPropertyChanged
 {
     private bool _isSelected = true;
 
-    public SchemaChange Change { get; init; }
+    public SchemaChange Change { get; }
+    public string? ObjectName { get; }
+    public string? SchemaName { get; }
 
     public bool IsSelected
     {
@@ -25,10 +27,21 @@ public class SelectableSchemaChange : INotifyPropertyChanged
         }
     }
 
-    public SelectableSchemaChange(SchemaChange change)
+    public SelectableSchemaChange(SchemaChange change, string? schemaName = "main")
     {
         Change = change;
+        ObjectName = ResolveObjectName(change);
+        SchemaName = schemaName;
     }
+
+    private static string? ResolveObjectName(SchemaChange change) =>
+        change switch
+        {
+            CreateTableChange table => table.TableName,
+            AddColumnChange column => column.TableName,
+            CreateViewChange view => view.ViewName,
+            _ => null
+        };
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

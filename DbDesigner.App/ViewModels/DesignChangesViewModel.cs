@@ -13,18 +13,24 @@ namespace DbDesigner.App.ViewModels;
 
 public class DesignChangesViewModel : ViewModelBase
 {
-    private readonly IChangeProposalService _proposalService;
+    private readonly IChangeProposalService _localService;
+    private readonly IChangeProposalService _apiService;
     private string _specificationText = "Przykladowa specyfikacja: dodaj tabele Opportunity z Name (text), Amount (real) i powiaz z Account.";
-    private string _statusMessage = "Brak wygenerowanych zmian.";
+    private string _statusMessageBase = "Brak wygenerowanych zmian.";
+    private string _statusMessage = string.Empty;
     private bool _isBusy;
+    private ChatBackendMode _chatBackendMode = ChatBackendMode.LocalStub;
+    private bool _isStatusError;
 
     public event Action? SelectedChangesChanged;
 
-    public DesignChangesViewModel(IChangeProposalService proposalService)
+    public DesignChangesViewModel(IChangeProposalService localService, IChangeProposalService apiService)
     {
-        _proposalService = proposalService;
+        _localService = localService;
+        _apiService = apiService;
         ProposedChanges = new ObservableCollection<SelectableSchemaChange>();
         ProposeChangesCommand = new RelayCommand(async _ => await ProposeChangesAsync(), _ => !IsBusy);
+        RefreshStatusMessage();
     }
 
     public DatabaseSchema? CurrentSchema { get; set; }
@@ -32,6 +38,18 @@ public class DesignChangesViewModel : ViewModelBase
     public ObservableCollection<SelectableSchemaChange> ProposedChanges { get; }
 
     public ICommand ProposeChangesCommand { get; }
+
+    public ChatBackendMode ChatBackendMode
+    {
+        get => _chatBackendMode;
+        set
+        {
+            if (SetProperty(ref _chatBackendMode, value))
+            {
+                RefreshStatusMessage();
+            }
+        }
+    }
 
     public string SpecificationText
     {
@@ -43,6 +61,12 @@ public class DesignChangesViewModel : ViewModelBase
     {
         get => _statusMessage;
         private set => SetProperty(ref _statusMessage, value);
+    }
+
+    public bool IsStatusError
+    {
+        get => _isStatusError;
+        private set => SetProperty(ref _isStatusError, value);
     }
 
     public bool IsBusy
@@ -65,9 +89,24 @@ public class DesignChangesViewModel : ViewModelBase
         try
         {
             IsBusy = true;
-            StatusMessage = "Analiza specyfikacji...";
+            UpdateStatusMessage("Analiza specyfikacji...", false);
 
-            var proposals = await _proposalService.ProposeChangesAsync(SpecificationText, CurrentSchema);
+            var service = ChatBackendMode == ChatBackendMode.ExternalApi ? _apiService : _localService;
+            var proposals = await service.ProposeChangesAsync(SpecificationText, CurrentSchema);
+            var fallbackUsed = false;
+
+            if (ChatBackendMode == ChatBackendMode.ExternalApi && (proposals == null || proposals.Count == 0))
+            {
+                UpdateStatusMessage("Blad API lub brak poprawnej konfiguracji - uzywam lokalnego stuba.", true);
+                proposals = await _localService.ProposeChangesAsync(SpecificationText, CurrentSchema);
+                fallbackUsed = true;
+            }
+            else
+            {
+                UpdateStatusMessage("Analiza specyfikacji...", false);
+            }
+
+            proposals ??= Array.Empty<SchemaChange>();
 
             foreach (var change in ProposedChanges)
             {
@@ -83,12 +122,19 @@ public class DesignChangesViewModel : ViewModelBase
                 ProposedChanges.Add(selectable);
             }
 
-            StatusMessage = $"Zaproponowano {ProposedChanges.Count} zmian.";
+            if (fallbackUsed)
+            {
+                UpdateStatusMessage($"Brak poprawnej konfiguracji API - uzywam lokalnego stuba. Zaproponowano {ProposedChanges.Count} zmian.", true);
+            }
+            else
+            {
+                UpdateStatusMessage($"Zaproponowano {ProposedChanges.Count} zmian.", false);
+            }
             SelectedChangesChanged?.Invoke();
         }
         catch (Exception ex)
         {
-            StatusMessage = $"Blad generowania: {ex.Message}";
+            UpdateStatusMessage($"Blad generowania: {ex.Message}", true);
         }
         finally
         {
@@ -103,4 +149,16 @@ public class DesignChangesViewModel : ViewModelBase
             SelectedChangesChanged?.Invoke();
         }
     }
+
+    private string BackendSuffix => ChatBackendMode == ChatBackendMode.ExternalApi ? "(Tryb: API)" : "(Tryb: lokalny)";
+
+    private void UpdateStatusMessage(string message, bool isError)
+    {
+        _statusMessageBase = message;
+        IsStatusError = isError;
+        StatusMessage = $"{message} {BackendSuffix}";
+    }
+
+    private void RefreshStatusMessage() =>
+        StatusMessage = $"{_statusMessageBase} {BackendSuffix}";
 }

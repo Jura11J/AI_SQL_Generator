@@ -1,0 +1,114 @@
+[2025-12-11 21:57:03] Backend: ExternalApi
+Schema: tables=6, views=1
+Specification: zrób mi widok ze wszystkich tabel w bazie
+Request:
+{"contents":[{"parts":[{"text":"You are an assistant that proposes database schema changes.\r\nUse the user\u0027s specification and the current schema to suggest changes.\r\nReturn ONLY JSON with the structure { \u0022changes\u0022: [ { \u0022type\u0022: \u0022...\u0022, \u0022description\u0022: \u0022...\u0022, \u0022tableName\u0022: \u0022...\u0022, \u0022viewName\u0022: \u0022...\u0022, \u0022sqlDefinition\u0022: \u0022...\u0022, \u0022columns\u0022: [ ... ], \u0022column\u0022: { ... } } ] } and no extra text.\r\nSpecification:\r\nzr\u00F3b mi widok ze wszystkich tabel w bazie\r\nCurrent schema JSON:\r\n{\u0022tables\u0022:[{\u0022name\u0022:\u0022Account\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022Name\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Nip\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Industry\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022CreatedAt\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022Activity\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022AccountId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022ContactId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Type\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Subject\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022DueDate\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Completed\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022Contact\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022AccountId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022FirstName\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022LastName\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Email\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Phone\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022Opportunity\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022AccountId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Name\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Stage\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022EstimatedValue\u0022,\u0022dataType\u0022:\u0022REAL\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022CloseDate\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Probability\u0022,\u0022dataType\u0022:\u0022REAL\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022User\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022Login\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022FullName\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Role\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022users\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022id\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022username\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022email\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022password\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022created_at\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022updated_at\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]}],\u0022views\u0022:[{\u0022name\u0022:\u0022vwOpportunityPipeline\u0022,\u0022definition\u0022:\u0022CREATE VIEW \\u0022vwOpportunityPipeline\\u0022 AS\\nSELECT\\n    O.Id,\\n    O.Name,\\n    O.Stage,\\n    O.EstimatedValue,\\n    O.CloseDate,\\n    A.Name AS AccountName\\nFROM Opportunity O\\nJOIN Account A ON A.Id = O.AccountId\u0022}]}\r\n"}]}],"generationConfig":{"response_mime_type":"application/json"}}
+Response:
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "{\n  \"changes\": [\n    {\n      \"type\": \"create_view\",\n      \"description\": \"Create a view combining data from all tables.\",\n      \"viewName\": \"AllDataView\",\n      \"sqlDefinition\": \"CREATE VIEW AllDataView AS SELECT * FROM Account UNION ALL SELECT * FROM Activity UNION ALL SELECT * FROM Contact UNION ALL SELECT * FROM Opportunity UNION ALL SELECT * FROM User UNION ALL SELECT * FROM users\"\n    }\n  ]\n}"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.039045831736396343
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 877,
+    "candidatesTokenCount": 102,
+    "totalTokenCount": 979,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 877
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "HjA7afGEO4mDvdIPz6G56AU"
+}
+
+Error:
+Response contained no valid changes
+--------------------------------------------------------------------------------
+[2025-12-11 21:57:03] Backend: LocalStub
+Schema: tables=6, views=1
+Specification: zrób mi widok ze wszystkich tabel w bazie
+Changes:
+- CreateViewChange: Odswiez widok vwOpportunityPipeline (propozycja aktualizacji).
+--------------------------------------------------------------------------------
+[2025-12-11 22:31:36] Backend: ExternalApi
+Schema: tables=6, views=1
+Specification: Przykladowa specyfikacja: dodaj tabele Opportunity z Name (text), Amount (real) i powiaz z Account.
+Error:
+Invalid API settings
+--------------------------------------------------------------------------------
+[2025-12-11 22:31:36] Backend: LocalStub
+Schema: tables=6, views=1
+Specification: Przykladowa specyfikacja: dodaj tabele Opportunity z Name (text), Amount (real) i powiaz z Account.
+Changes:
+- CreateViewChange: Odswiez widok vwOpportunityPipeline (propozycja aktualizacji).
+--------------------------------------------------------------------------------
+[2025-12-11 22:43:58] Backend: LocalStub
+Schema: tables=6, views=1
+Specification: napisz mi widok w którym są wszystkie elementy z bazy 
+Changes:
+- CreateViewChange: Odswiez widok vwOpportunityPipeline (propozycja aktualizacji).
+--------------------------------------------------------------------------------
+[2025-12-11 22:44:19] Backend: ExternalApi
+Schema: tables=6, views=1
+Specification: napisz mi widok w którym są wszystkie elementy z bazy 
+Request:
+{"contents":[{"parts":[{"text":"You are an assistant that proposes database schema changes.\r\nUse the user\u0027s specification and the current schema to suggest changes.\r\nReturn ONLY JSON with the structure { \u0022changes\u0022: [ { \u0022type\u0022: \u0022...\u0022, \u0022description\u0022: \u0022...\u0022, \u0022tableName\u0022: \u0022...\u0022, \u0022viewName\u0022: \u0022...\u0022, \u0022sqlDefinition\u0022: \u0022...\u0022, \u0022columns\u0022: [ ... ], \u0022column\u0022: { ... } } ] } and no extra text.\r\nAllowed values for \u0022type\u0022: \u0022CreateTable\u0022, \u0022AddColumn\u0022, \u0022CreateView\u0022 (or lowercase without spaces).\r\nSpecification:\r\nnapisz mi widok w kt\u00F3rym s\u0105 wszystkie elementy z bazy \r\nCurrent schema JSON:\r\n{\u0022tables\u0022:[{\u0022name\u0022:\u0022Account\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022Name\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Nip\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Industry\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022CreatedAt\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022Activity\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022AccountId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022ContactId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Type\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Subject\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022DueDate\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Completed\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022Contact\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022AccountId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022FirstName\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022LastName\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Email\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Phone\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022Opportunity\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022AccountId\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Name\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Stage\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022EstimatedValue\u0022,\u0022dataType\u0022:\u0022REAL\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022CloseDate\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Probability\u0022,\u0022dataType\u0022:\u0022REAL\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022User\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022Id\u0022,\u0022dataType\u0022:\u0022INTEGER\u0022,\u0022isNullable\u0022:true,\u0022isPrimaryKey\u0022:true},{\u0022name\u0022:\u0022Login\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022FullName\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022Role\u0022,\u0022dataType\u0022:\u0022TEXT\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]},{\u0022name\u0022:\u0022users\u0022,\u0022columns\u0022:[{\u0022name\u0022:\u0022id\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022username\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022email\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022password\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022created_at\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false},{\u0022name\u0022:\u0022updated_at\u0022,\u0022dataType\u0022:\u0022\u0022,\u0022isNullable\u0022:false,\u0022isPrimaryKey\u0022:false}]}],\u0022views\u0022:[{\u0022name\u0022:\u0022vwOpportunityPipeline\u0022,\u0022definition\u0022:\u0022CREATE VIEW \\u0022vwOpportunityPipeline\\u0022 AS\\nSELECT\\n    O.Id,\\n    O.Name,\\n    O.Stage,\\n    O.EstimatedValue,\\n    O.CloseDate,\\n    A.Name AS AccountName\\nFROM Opportunity O\\nJOIN Account A ON A.Id = O.AccountId\u0022}]}\r\n"}]}],"generationConfig":{"response_mime_type":"application/json"}}
+Response:
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "{\n  \"changes\": [\n    {\n      \"type\": \"CreateView\",\n      \"description\": \"Creates a view that combines all tables in the database.\",\n      \"viewName\": \"AllDataView\",\n      \"sqlDefinition\": \"CREATE VIEW AllDataView AS SELECT 'Account' AS SourceTable, * FROM Account UNION ALL SELECT 'Activity' AS SourceTable, * FROM Activity UNION ALL SELECT 'Contact' AS SourceTable, * FROM Contact UNION ALL SELECT 'Opportunity' AS SourceTable, * FROM Opportunity UNION ALL SELECT 'User' AS SourceTable, * FROM User UNION ALL SELECT 'users' AS SourceTable, * FROM users\"\n    }\n  ]\n}"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.024770166134012155
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 906,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 1051,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 906
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "Mjs7aZrSNbewxN8PzsGEsA8"
+}
+
+Changes:
+- CreateViewChange: Creates a view that combines all tables in the database.
+--------------------------------------------------------------------------------

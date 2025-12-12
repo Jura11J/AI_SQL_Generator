@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="PrimaryColor">#10A37F</Color>
+    <Color x:Key="PrimaryColorLight">#12B68E</Color>
+    <Color x:Key="SurfaceColor">#F5F5F7</Color>
+    <Color x:Key="CardColor">#FFFFFF</Color>
+    <Color x:Key="TextColor">#1F2933</Color>
+    <Color x:Key="BorderColor">#E1E3E8</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="PrimaryBrushLight" Color="{StaticResource PrimaryColorLight}" />
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}" />
+    <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}" />
+    <SolidColorBrush x:Key="BorderBrushLight" Color="{StaticResource BorderColor}" />
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}" />
+</ResourceDictionary>

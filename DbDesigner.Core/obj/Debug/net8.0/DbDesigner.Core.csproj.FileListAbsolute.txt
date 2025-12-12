@@ -9,3 +9,4 @@ C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0
 C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\refint\DbDesigner.Core.dll
 C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.pdb
 C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\ref\DbDesigner.Core.dll
+C:\Users\juras\Documents\Repos\AI_SQL_Generator\DbDesigner.Core\obj\Debug\net8.0\DbDesigner.Core.sourcelink.json

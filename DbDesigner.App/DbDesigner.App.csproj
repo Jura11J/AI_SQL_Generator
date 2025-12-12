@@ -8,10 +8,35 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup Condition="Exists('Assets\\appicon.ico')">
+    <ApplicationIcon>Assets\\appicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\\DbDesigner.Core\\DbDesigner.Core.csproj" />
     <ProjectReference Include="..\\DbDesigner.Infrastructure\\DbDesigner.Infrastructure.csproj" />
     <ProjectReference Include="..\\DbDesigner.AI\\DbDesigner.AI.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ICSharpCode.AvalonEdit" Version="4.3.0-alpha-00000000" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\\Sql.xshd" />
+    <Resource Include="Assets\\appicon.ico" Condition="Exists('Assets\\appicon.ico')" />
+  </ItemGroup>
+
+    <Target Name="GenerateAppIcon" BeforeTargets="PrepareResources"
+          Condition="Exists('Resources\\icon.svg')">
+    <!-- Utwórz katalog Assets, jeśli jeszcze nie istnieje -->
+    <MakeDir Directories="Assets" />
+
+    <Exec 
+      Command='magick "$(MSBuildProjectDirectory)\Resources\icon.svg" -resize 256x256 "$(MSBuildProjectDirectory)\Assets\appicon.ico"'
+      ContinueOnError="true" />
+  </Target>
+
 
 </Project>
